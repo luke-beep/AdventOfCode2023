@@ -1,8 +1,8 @@
-﻿using AdventOfCode2023.Day1.Contracts;
+﻿using AdventOfCode2023.Days.Contracts;
 using AdventOfCode2023.Utilities;
 using AdventOfCode2023.Utilities.Contracts;
 
-namespace AdventOfCode2023.Day1;
+namespace AdventOfCode2023.Days;
 
 public class Day1 : IDay1
 {
