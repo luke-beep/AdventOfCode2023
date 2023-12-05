@@ -7,7 +7,7 @@ internal class Program
 {
     private static async Task Main(string[] args)
     {
-        IDay2 day2 = new Day2();
-        await day2.Solve();
+        IDay3 day3 = new Day3();
+        await day3.Solve();
     }
 }

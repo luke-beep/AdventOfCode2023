@@ -8,7 +8,7 @@ internal class FileService : IFileService
         return await File.ReadAllTextAsync(path);
     }
 
-    public async Task<string[]> ReadFileAsLinesAsync(string path)
+    public async Task<string[]> ReadAllLinesAsync(string path)
     {
         return await File.ReadAllLinesAsync(path);
     }

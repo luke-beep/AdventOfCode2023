@@ -37,7 +37,7 @@ public class Day1 : IDay1
     {
         IFileService fileService = new FileService();
 
-        var input = await fileService.ReadFileAsLinesAsync(@"F:\source\luke-beep\AdventOfCode2023\Inputs\Day1.txt");
+        var input = await fileService.ReadAllLinesAsync(@"F:\source\luke-beep\AdventOfCode2023\Inputs\Day1.txt");
 
         Part1(input);
         Part2(input);

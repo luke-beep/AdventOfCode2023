@@ -3,5 +3,5 @@
 public interface IFileService
 {
     Task<string> ReadFileAsync(string path);
-    Task<string[]> ReadFileAsLinesAsync(string path);
+    Task<string[]> ReadAllLinesAsync(string path);
 }

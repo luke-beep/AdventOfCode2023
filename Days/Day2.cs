@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using AdventOfCode2023.Days.Contracts;
+﻿using AdventOfCode2023.Days.Contracts;
 using AdventOfCode2023.Utilities;
 using AdventOfCode2023.Utilities.Contracts;
 
@@ -10,7 +9,7 @@ public class Day2 : IDay2
     public async Task Solve()
     {
         IFileService fileService = new FileService();
-        var input = await fileService.ReadFileAsLinesAsync(@"F:\source\luke-beep\AdventOfCode2023\Inputs\Day2.txt");
+        var input = await fileService.ReadAllLinesAsync(@"F:\source\luke-beep\AdventOfCode2023\Inputs\Day2.txt");
         await Solution(input);
     }
 
