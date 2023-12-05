@@ -5,17 +5,28 @@ using static AdventOfCode2023.Days.Parts;
 
 namespace AdventOfCode2023.Days;
 
-
-public partial class Day3 : IDay3
+[Solution(3)]
+public partial class Day3 : ISolution
 {
-    public async Task Solve()
+    private readonly string _path;
+    public Day3(string path)
     {
-        var fileService = new FileService();
-        var input = await fileService.ReadAllLinesAsync(@"F:\source\luke-beep\AdventOfCode2023\Inputs\Day3.txt");
-        await Solution(input);
+        _path = path;
     }
 
-    public static async Task Solution(string[] input)
+    public string GetPath()
+    {
+        return _path;
+    }
+
+    public async Task<Dictionary<string, string>> Solve()
+    {
+        var fileService = new FileService();
+        var input = await fileService.ReadAllLinesAsync(_path);
+        return await Solution(input);
+    }
+
+    public static Task<Dictionary<string, string>> Solution(string[] input)
     {
         var symbols = new List<Symbol>();
         var numbers = new List<Number>();
@@ -28,7 +39,13 @@ public partial class Day3 : IDay3
 
             lineNum++;
         }
-        await Console.Out.WriteLineAsync($"{Sum(numbers, symbols)}, {Ratio(numbers, symbols)}");
+
+        var result = new Dictionary<string, string>
+        {
+            { "Part1", $"{Sum(numbers, symbols)}" },
+            { "Part2", $"{Ratio(numbers, symbols)}" }
+        };
+        return Task.FromResult(result);
     }
 
     private static void ProcessNumbers(string line, ICollection<Number> numbers, int lineNum)

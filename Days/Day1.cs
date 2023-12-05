@@ -4,8 +4,36 @@ using AdventOfCode2023.Utilities.Contracts;
 
 namespace AdventOfCode2023.Days;
 
-public class Day1 : IDay1
+[Solution(1)]
+public class Day1 : ISolution
 {
+    private readonly string _path;
+    public Day1(string path)
+    {
+        _path = path;
+    }
+
+    public string GetPath()
+    {
+        return _path;
+    }
+    public async Task<Dictionary<string, string>> Solve()
+    {
+        IFileService fileService = new FileService();
+        var input = await fileService.ReadAllLinesAsync(_path);
+        return await Solution(input);
+    }
+
+    private async Task<Dictionary<string, string>> Solution(string[] input)
+    {
+        Dictionary<string, string> result = new();
+        var p1 = await Part1(input);
+        var p2 = await Part2(input);
+        result.Add("Part 1", p1);
+        result.Add("Part 2", p2);
+        return result;
+    }
+
     private static readonly Dictionary<string, int> P1 = new()
     {
         {"0", 0},
@@ -33,17 +61,7 @@ public class Day1 : IDay1
         { "nine", 9 },
     };
 
-    public async Task Solve()
-    {
-        IFileService fileService = new FileService();
-
-        var input = await fileService.ReadAllLinesAsync(@"F:\source\luke-beep\AdventOfCode2023\Inputs\Day1.txt");
-
-        Part1(input);
-        Part2(input);
-    }
-
-    private static void Part1(IEnumerable<string> input)
+    private static Task<string> Part1(IEnumerable<string> input)
     {
         var sum = 0;
         foreach (var s in input)
@@ -51,9 +69,9 @@ public class Day1 : IDay1
             sum += Index(s, P1);
         }
 
-        Console.WriteLine(sum);
+        return Task.FromResult(sum.ToString());
     }
-    private static void Part2(IEnumerable<string> input)
+    private static Task<string> Part2(IEnumerable<string> input)
     {
         var sum = 0;
         foreach (var s in input)
@@ -61,7 +79,7 @@ public class Day1 : IDay1
             sum += Index(s, P2);
         }
 
-        Console.WriteLine(sum);
+        return Task.FromResult(sum.ToString());
     }
 
     private static int Index(string line, Dictionary<string, int> dict)

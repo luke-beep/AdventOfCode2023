@@ -4,16 +4,28 @@ using AdventOfCode2023.Utilities.Contracts;
 
 namespace AdventOfCode2023.Days;
 
-public class Day2 : IDay2
+[Solution(2)]
+public class Day2 : ISolution
 {
-    public async Task Solve()
+    private readonly string _path;
+    public Day2(string path)
     {
-        IFileService fileService = new FileService();
-        var input = await fileService.ReadAllLinesAsync(@"F:\source\luke-beep\AdventOfCode2023\Inputs\Day2.txt");
-        await Solution(input);
+        _path = path;
     }
 
-    public async Task Solution(string[] input)
+    public string GetPath()
+    {
+        return _path;
+    }
+
+    public async Task<Dictionary<string, string>> Solve()
+    {
+        IFileService fileService = new FileService();
+        var input = await fileService.ReadAllLinesAsync(_path);
+        return await Solution(input);
+    }
+
+    public Task<Dictionary<string, string>> Solution(string[] input)
     {
         var games = new List<Game>();
         for (var i = 0; i < input.Length; i++)
@@ -25,8 +37,8 @@ public class Day2 : IDay2
             {
                 Id = i + 1,
                 Reds = new List<int>(),
-                Greens = new(),
-                Blues = new()
+                Greens = new List<int>(),
+                Blues = new List<int>()
             };
 
             foreach (var round in rounds)
@@ -57,10 +69,12 @@ public class Day2 : IDay2
 
         var possibleGames = games.Where(g => g is { MinReds: <= 12, MinGreens: <= 13, MinBlues: <= 14 });
         var sumOfIds = possibleGames.Sum(g => g.Id);
-        await Console.Out.WriteLineAsync(sumOfIds.ToString());
-
         var sumOfPowers = games.Sum(g => g.Power);
-        await Console.Out.WriteLineAsync(sumOfPowers.ToString());
+        return Task.FromResult(new Dictionary<string, string>
+        {
+            { "Part 1", sumOfIds.ToString() },
+            { "Part 2", sumOfPowers.ToString() }
+        });
     }
 }
 
