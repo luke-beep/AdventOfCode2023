@@ -58,7 +58,6 @@ public class BoatGame()
     public int Part1()
     {
         int totalWays = 1;
-
         for (int i = 0; i < Time.Count; i++)
         {
             int ways = 0;
@@ -72,7 +71,8 @@ public class BoatGame()
             }
             totalWays *= ways;
         }
-
+ 
+        // var totalWaysLinq = Time.Select((t, i) => Enumerable.Range(1, t - 1).Count(j => j * (t - j) > Distance[i])).Aggregate(1, (acc, ways) => acc * ways);
         return totalWays;
     }
 
@@ -81,17 +81,18 @@ public class BoatGame()
         long time = long.Parse(string.Join("", Time));
         long distance = long.Parse(string.Join("", Distance));
 
-        int ways = 0;
+        int totalWays = 0;
         for (int i = 1; i < time; i++)
         {
             var tmp = i * (time - i);
             if (tmp > distance)
             {
-                ways++;
+                totalWays++;
             }
         }
 
-        return ways;
+        // var totalWaysLinq = Enumerable.Range(1, (int)time - 1).Count(i => i * (time - i) > distance);
+        return totalWays;
     }
 
 
