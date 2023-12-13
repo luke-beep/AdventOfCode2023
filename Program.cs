@@ -9,17 +9,19 @@ namespace AdventOfCode2023;
 
 internal class Program
 {
-    private const string Path1 = @"F:\source\luke-beep\AdventOfCode2023\Inputs\Day1.txt";
-    private const string Path2 = @"F:\source\luke-beep\AdventOfCode2023\Inputs\Day2.txt";
-    private const string Path3 = @"F:\source\luke-beep\AdventOfCode2023\Inputs\Day3.txt";
-    private const string Path4 = @"F:\source\luke-beep\AdventOfCode2023\Inputs\Day4.txt";
-    private const string Path5 = @"F:\source\luke-beep\AdventOfCode2023\Inputs\Day5.txt";
+    private const string Path1 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day1.txt";
+    private const string Path2 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day2.txt";
+    private const string Path3 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day3.txt";
+    private const string Path4 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day4.txt";
+    private const string Path5 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day5.txt";
+    private const string Path6 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day6.txt";
 
     private static readonly ISolution Day1 = new Day1(Path1);
     private static readonly ISolution Day2 = new Day2(Path2);
     private static readonly ISolution Day3 = new Day3(Path3);
     private static readonly ISolution Day4 = new Day4(Path4);
     private static readonly ISolution Day5 = new Day5(Path5);
+    private static readonly ISolution Day6 = new Day6(Path6);
 
     private static readonly Table PathTable = new();
     private static readonly Table RootTable = new();
@@ -34,12 +36,54 @@ internal class Program
 
     private static async Task Main(string[] args)
     {
+        var debug = args.Length > 0 && args[0] == "debug";
+        var debugDay = args.Length > 1 ? int.Parse(args[1]) : 0;
+        if (debug)
+        {
+            await Debug(debugDay);
+        }
+        else
+        {
+            await InitializeConsoleAsync();
+            await ConfigurePanelsAsync();
+            await InitializeTablesAsync();
+            await ConfigureTablesAsync();
+            await ConfigureCalendarAsync();
+            await InitializeLayoutAsync();
+        }
+
+    }
+
+    private static async Task Debug(int day)
+    {
         await InitializeConsoleAsync();
-        await ConfigurePanelsAsync();
-        await InitializeTablesAsync();
-        await ConfigureTablesAsync();
-        await ConfigureCalendarAsync();
-        await InitializeLayoutAsync();
+        var tmp = new Dictionary<string, string>();
+        switch (day)
+        {
+            case 1:
+                tmp = await Day1.Solve();
+                break;
+            case 2:
+                tmp = await Day2.Solve();
+                break;
+            case 3:
+                tmp = await Day3.Solve();
+                break;
+            case 4:
+                tmp = await Day4.Solve();
+                break;
+            case 5:
+                tmp = await Day5.Solve();
+                break;
+            case 6:
+                tmp = await Day6.Solve();
+                break;
+        }
+
+        foreach (var kvp in tmp)
+        {
+            AnsiConsole.WriteLine($"{kvp.Key}: {kvp.Value}");
+        }
     }
 
     private static async Task InitializeLayoutAsync()
@@ -145,7 +189,8 @@ internal class Program
             "Day 2",
             "Day 3",
             "Day 4",
-            "Day 5"
+            "Day 5",
+            "Day 6"
         };
 
         var solutionStrings = AnsiConsole.Prompt(
@@ -178,6 +223,9 @@ internal class Program
                     break;
                 case "Day 5":
                     solutions.Add(Day5);
+                    break;
+                case "Day 6":
+                    solutions.Add(Day6);
                     break;
             }
         }
