@@ -1,5 +1,4 @@
-﻿using AdventOfCode2023.Days.Contracts;
-using AdventOfCode2023.Utilities;
+﻿using AdventOfCode2023.Utilities;
 using AdventOfCode2023.Utilities.Contracts;
 
 namespace AdventOfCode2023.Days;
@@ -97,9 +96,23 @@ public class Game
         get; set;
     }
 
-    public int MinReds => Reds.Max();
-    public int MinGreens => Greens.Max();
-    public int MinBlues => Blues.Max();
+    public int MinReds
+    {
+        get { return Reds.Max(); }
+    }
 
-    public int Power => MinReds * MinGreens * MinBlues;
+    public int MinGreens
+    {
+        get { return Greens.Max(); }
+    }
+
+    public int MinBlues
+    {
+        get { return Blues.Max(); }
+    }
+
+    public int Power
+    {
+        get { return MinReds * MinGreens * MinBlues; }
+    }
 }

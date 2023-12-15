@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Reflection;
 using AdventOfCode2023.Days;
-using AdventOfCode2023.Days.Contracts;
 using AdventOfCode2023.Utilities;
+using AdventOfCode2023.Utilities.Contracts;
 using Spectre.Console;
 
 namespace AdventOfCode2023;
@@ -15,6 +15,7 @@ internal class Program
     private const string Path4 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day4.txt";
     private const string Path5 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day5.txt";
     private const string Path6 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day6.txt";
+    private const string Path7 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day7.txt";
 
     private static readonly ISolution Day1 = new Day1(Path1);
     private static readonly ISolution Day2 = new Day2(Path2);
@@ -22,6 +23,7 @@ internal class Program
     private static readonly ISolution Day4 = new Day4(Path4);
     private static readonly ISolution Day5 = new Day5(Path5);
     private static readonly ISolution Day6 = new Day6(Path6);
+    private static readonly ISolution Day7 = new Day7(Path7);
 
     private static readonly Table PathTable = new();
     private static readonly Table RootTable = new();
@@ -56,7 +58,6 @@ internal class Program
 
     private static async Task Debug(int day)
     {
-        await InitializeConsoleAsync();
         var tmp = new Dictionary<string, string>();
         switch (day)
         {
@@ -77,6 +78,9 @@ internal class Program
                 break;
             case 6:
                 tmp = await Day6.Solve();
+                break;
+                case 7:
+                tmp = await Day7.Solve();
                 break;
         }
 
@@ -190,7 +194,8 @@ internal class Program
             "Day 3",
             "Day 4",
             "Day 5",
-            "Day 6"
+            "Day 6",
+            "Day 7"
         };
 
         var solutionStrings = AnsiConsole.Prompt(
@@ -226,6 +231,9 @@ internal class Program
                     break;
                 case "Day 6":
                     solutions.Add(Day6);
+                    break;
+                case "Day 7":
+                    solutions.Add(Day7);
                     break;
             }
         }

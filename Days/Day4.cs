@@ -1,6 +1,6 @@
 ﻿using System.Collections.Specialized;
-using AdventOfCode2023.Days.Contracts;
 using AdventOfCode2023.Utilities;
+using AdventOfCode2023.Utilities.Contracts;
 
 namespace AdventOfCode2023.Days;
 
@@ -122,7 +122,13 @@ public class CardGame
         set;
     } = new();
 
-    public int CalculateCardPoints() => CalculateMatches() == 0 ? 0 : (int)Math.Pow(2, CalculateMatches() - 1);
+    public int CalculateCardPoints()
+    {
+        return CalculateMatches() == 0 ? 0 : (int)Math.Pow(2, CalculateMatches() - 1);
+    }
 
-    public int CalculateMatches() => WinningCards.Values.Intersect(PlayerCards.Values).Count();
+    public int CalculateMatches()
+    {
+        return WinningCards.Values.Intersect(PlayerCards.Values).Count();
+    }
 }

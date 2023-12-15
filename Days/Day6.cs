@@ -1,12 +1,15 @@
-﻿using AdventOfCode2023.Days.Contracts;
-using AdventOfCode2023.Utilities;
+﻿using AdventOfCode2023.Utilities;
+using AdventOfCode2023.Utilities.Contracts;
 
 namespace AdventOfCode2023.Days;
 
 [Solution(6)]
 public class Day6(string path) : ISolution
 {
-    public string GetPath() => path;
+    public string GetPath()
+    {
+        return path;
+    }
 
     public async Task<Dictionary<string, string>> Solve()
     {

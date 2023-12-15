@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
-using AdventOfCode2023.Days.Contracts;
 using AdventOfCode2023.Utilities;
+using AdventOfCode2023.Utilities.Contracts;
 using static AdventOfCode2023.Days.Parts;
 
 namespace AdventOfCode2023.Days;

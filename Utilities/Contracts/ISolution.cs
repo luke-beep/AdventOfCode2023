@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2023.Days.Contracts;
+﻿namespace AdventOfCode2023.Utilities.Contracts;
 
 public interface ISolution
 {
