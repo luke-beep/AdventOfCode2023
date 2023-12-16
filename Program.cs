@@ -9,13 +9,14 @@ namespace AdventOfCode2023;
 
 internal class Program
 {
-    private const string Path1 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day1.txt";
-    private const string Path2 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day2.txt";
-    private const string Path3 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day3.txt";
-    private const string Path4 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day4.txt";
-    private const string Path5 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day5.txt";
-    private const string Path6 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day6.txt";
-    private const string Path7 = @"D:\source\luke-beep\AdventOfCode2023\Inputs\Day7.txt";
+    private const string Path1 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day1.txt";
+    private const string Path2 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day2.txt";
+    private const string Path3 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day3.txt";
+    private const string Path4 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day4.txt";
+    private const string Path5 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day5.txt";
+    private const string Path6 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day6.txt";
+    private const string Path7 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day7.txt";
+    private const string Path8 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day8.txt";
 
     private static readonly ISolution Day1 = new Day1(Path1);
     private static readonly ISolution Day2 = new Day2(Path2);
@@ -24,6 +25,7 @@ internal class Program
     private static readonly ISolution Day5 = new Day5(Path5);
     private static readonly ISolution Day6 = new Day6(Path6);
     private static readonly ISolution Day7 = new Day7(Path7);
+    private static readonly ISolution Day8 = new Day8(Path8);
 
     private static readonly Table PathTable = new();
     private static readonly Table RootTable = new();
@@ -79,8 +81,11 @@ internal class Program
             case 6:
                 tmp = await Day6.Solve();
                 break;
-                case 7:
+            case 7:
                 tmp = await Day7.Solve();
+                break;
+            case 8:
+                tmp = await Day8.Solve();
                 break;
         }
 
@@ -195,7 +200,8 @@ internal class Program
             "Day 4",
             "Day 5",
             "Day 6",
-            "Day 7"
+            "Day 7",
+            "Day 8",
         };
 
         var solutionStrings = AnsiConsole.Prompt(
@@ -233,6 +239,9 @@ internal class Program
                     solutions.Add(Day6);
                     break;
                 case "Day 7":
+                    solutions.Add(Day7);
+                    break;
+                case "Day 8":
                     solutions.Add(Day7);
                     break;
             }
