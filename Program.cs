@@ -242,7 +242,7 @@ internal class Program
                     solutions.Add(Day7);
                     break;
                 case "Day 8":
-                    solutions.Add(Day7);
+                    solutions.Add(Day8);
                     break;
             }
         }

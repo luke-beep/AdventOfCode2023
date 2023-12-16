@@ -23,12 +23,12 @@ internal class Day8(string path) : ISolution
 
     public static Task<Dictionary<string, string>> Solution(string[] input)
     {
-        //var part1 = Part1(input);
+        var part1 = Part1(input);
         var part2 = Part2(input);
 
         Dictionary<string, string> result = new()
         {
-            { "Part 1", "e" },
+            { "Part 1", part1.ToString() },
             { "Part 2", part2.ToString() }
         };
 
