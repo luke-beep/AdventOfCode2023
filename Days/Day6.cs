@@ -20,7 +20,7 @@ public class Day6(string path) : ISolution
 
     public Task<Dictionary<string, string>> Solution(string[] input)
     {
-        BoatGame boatGame = new BoatGame();
+        var boatGame = new BoatGame();
 
         var time = input[0].Split(":")[1].Trim();
         var distance = input[1].Split(":")[1].Trim();
@@ -53,18 +53,18 @@ public class Day6(string path) : ISolution
     }
 }
 
-public class BoatGame()
+public class BoatGame
 {
     public List<int> Time { get; set; }
     public List<int> Distance { get; set; }
 
     public int Part1()
     {
-        int totalWays = 1;
-        for (int i = 0; i < Time.Count; i++)
+        var totalWays = 1;
+        for (var i = 0; i < Time.Count; i++)
         {
-            int ways = 0;
-            for (int j = 1; j < Time[i]; j++)
+            var ways = 0;
+            for (var j = 1; j < Time[i]; j++)
             {
                 var tmp = j * (Time[i] - j);
                 if (tmp > Distance[i])
@@ -81,11 +81,11 @@ public class BoatGame()
 
     public int Part2()
     {
-        long time = long.Parse(string.Join("", Time));
-        long distance = long.Parse(string.Join("", Distance));
+        var time = long.Parse(string.Join("", Time));
+        var distance = long.Parse(string.Join("", Distance));
 
-        int totalWays = 0;
-        for (int i = 1; i < time; i++)
+        var totalWays = 0;
+        for (var i = 1; i < time; i++)
         {
             var tmp = i * (time - i);
             if (tmp > distance)

@@ -1,12 +1,6 @@
-﻿using AdventOfCode2023.Utilities;
+﻿using System.Collections.Concurrent;
+using AdventOfCode2023.Utilities;
 using AdventOfCode2023.Utilities.Contracts;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode2023.Days;
 
@@ -99,28 +93,28 @@ internal class Day8(string path) : ISolution
     }
 }
 
-public class Nodes()
+public class Nodes
 {
     public List<Instructions> instructions = [];
     public List<Node> nodes = [];
 
     public int Part1()
     {
-        string currentElement = "AAA";
-        int instructionIndex = 0;
-        int steps = 0;
+        var currentElement = "AAA";
+        var instructionIndex = 0;
+        var steps = 0;
 
         while (currentElement != "ZZZ")
         {
-            Node currentNode = nodes.Find(n => n.Name == currentElement);
+            var currentNode = nodes.Find(n => n.Name == currentElement);
             if (currentNode == null)
             {
                 throw new Exception($"Node {currentElement} not found");
             }
 
-            char currentInstruction = instructions[instructionIndex].Direction;
+            var currentInstruction = instructions[instructionIndex].Direction;
             currentElement = currentInstruction == 'L' ? currentNode.Elements.Keys.First() : currentNode.Elements.Values.First();
-
+            
             instructionIndex = (instructionIndex + 1) % instructions.Count;
             steps++;
         }
@@ -136,12 +130,13 @@ public class Nodes()
         var steps = 0;
         var currentElements = new ConcurrentQueue<string>(beginningNodes.Select(n => n.Name));
 
-        while (currentElements.Any(e => !endingNodes.Any(n => n.Name == e)))
+        while (currentElements.Any(e => endingNodes.All(n => n.Name != e)))
         {
             var newElements = new ConcurrentQueue<string>();
+            var elements = currentElements;
             Parallel.ForEach(currentElements, element =>
             {
-                currentElements.TryDequeue(out element);
+                elements.TryDequeue(out element);
                 var currentNode = nodes.Find(n => n.Name == element);
                 if (currentNode == null)
                 {
@@ -166,13 +161,13 @@ public class Nodes()
 
 }
 
-public class Node()
+public class Node
 {
     public string Name { get; set; }
     public Dictionary<string, string> Elements { get; set; } = new();
 }
 
-public class Instructions()
+public class Instructions
 {
     public char Direction { get; set; }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Reflection;
+﻿using System.Reflection;
 using AdventOfCode2023.Days;
 using AdventOfCode2023.Utilities;
 using AdventOfCode2023.Utilities.Contracts;
@@ -17,6 +16,7 @@ internal class Program
     private const string Path6 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day6.txt";
     private const string Path7 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day7.txt";
     private const string Path8 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day8.txt";
+    private const string Path9 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day9.txt";
 
     private static readonly ISolution Day1 = new Day1(Path1);
     private static readonly ISolution Day2 = new Day2(Path2);
@@ -26,6 +26,7 @@ internal class Program
     private static readonly ISolution Day6 = new Day6(Path6);
     private static readonly ISolution Day7 = new Day7(Path7);
     private static readonly ISolution Day8 = new Day8(Path8);
+    private static readonly ISolution Day9 = new Day9(Path9);
 
     private static readonly Table PathTable = new();
     private static readonly Table RootTable = new();
@@ -86,6 +87,9 @@ internal class Program
                 break;
             case 8:
                 tmp = await Day8.Solve();
+                break;
+            case 9:
+                tmp = await Day9.Solve();
                 break;
         }
 
@@ -202,18 +206,12 @@ internal class Program
             "Day 6",
             "Day 7",
             "Day 8",
+            "Day 9"
         };
 
         var solutionStrings = AnsiConsole.Prompt(
-            new MultiSelectionPrompt<string>()
-                .Title("Which [green]Advent of Code[/] solutions would you like to see?")
-                .PageSize(10)
-                .Required()
-                .MoreChoicesText("[grey](Move up and down to reveal more solutions)[/]")
-                .InstructionsText(
-                    "[grey](Press [blue]<space>[/] to toggle a solution, " +
-                    "[green]<enter>[/] to accept)[/]")
-                .AddChoices(solutionList));
+            new MultiSelectionPrompt<string>().Title("Which [green]Advent of Code[/] solutions would you like to see?").PageSize(10).Required().MoreChoicesText("[grey](Move up and down to reveal more solutions)[/]").InstructionsText("[grey](Press [blue]<space>[/] to toggle a solution, " +
+                "[green]<enter>[/] to accept)[/]").AddChoices(solutionList));
 
         var solutions = new List<ISolution>();
         foreach (var solutionString in solutionStrings)
@@ -243,6 +241,9 @@ internal class Program
                     break;
                 case "Day 8":
                     solutions.Add(Day8);
+                    break;
+                case "Day 9":
+                    solutions.Add(Day9);
                     break;
             }
         }

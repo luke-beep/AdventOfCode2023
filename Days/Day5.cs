@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Runtime.CompilerServices;
-using AdventOfCode2023.Utilities;
+﻿using AdventOfCode2023.Utilities;
 using AdventOfCode2023.Utilities.Contracts;
 
 namespace AdventOfCode2023.Days;

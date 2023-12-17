@@ -1,6 +1,5 @@
 ﻿using AdventOfCode2023.Utilities;
 using AdventOfCode2023.Utilities.Contracts;
-using System.Linq;
 
 namespace AdventOfCode2023.Days;
 
@@ -68,11 +67,7 @@ public class CamelCards(string input)
     }
 
     private int Solve(Func<string, (long, long)> points) {
-        var bids = Input.Split("\n")
-            .Select(line => new { line, hand = line.Split(" ")[0] })
-            .Select(t => new { t, bid = int.Parse(t.line.Split(" ")[1]) })
-            .OrderBy(t => points(t.t.hand))
-            .Select(t => t.bid);
+        var bids = Input.Split("\n").Select(line => new { line, hand = line.Split(" ")[0] }).Select(t => new { t, bid = int.Parse(t.line.Split(" ")[1]) }).OrderBy(t => points(t.t.hand)).Select(t => t.bid);
         
 
         return bids.Select((bid, rank) => (rank + 1) * bid).Sum();

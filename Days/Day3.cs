@@ -114,7 +114,7 @@ public class Parts
         {
             get;
         }
-    };
+    }
 
     public class Symbol()
     {
