@@ -18,6 +18,7 @@ internal class Program
     private const string Path8 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day8.txt";
     private const string Path9 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day9.txt";
     private const string Path10 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day10.txt";
+    private const string Path11 = @"D:\Source\luke-beep\AdventOfCode2023\Inputs\Day11.txt";
 
     private static readonly ISolution Day1 = new Day1(Path1);
     private static readonly ISolution Day2 = new Day2(Path2);
@@ -29,6 +30,7 @@ internal class Program
     private static readonly ISolution Day8 = new Day8(Path8);
     private static readonly ISolution Day9 = new Day9(Path9);
     private static readonly ISolution Day10 = new Day10(Path10);
+    private static readonly ISolution Day11 = new Day11(Path11);
 
     private static readonly Table PathTable = new();
     private static readonly Table RootTable = new();
@@ -96,6 +98,9 @@ internal class Program
                 break;
             case 10:
                 tmp = await Day10.Solve();
+                break;
+            case 11:
+                tmp = await Day11.Solve();
                 break;
         }
 
@@ -213,7 +218,8 @@ internal class Program
             "Day 7",
             "Day 8",
             "Day 9",
-            "Day 10"
+            "Day 10",
+            "Day 11"
         };
 
         var solutionStrings = AnsiConsole.Prompt(
@@ -254,6 +260,9 @@ internal class Program
                     break;
                 case "Day 10":
                     solutions.Add(Day10);
+                    break;
+                case "Day 11":
+                    solutions.Add(Day11);
                     break;
             }
         }
